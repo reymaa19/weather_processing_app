@@ -49,10 +49,6 @@ class WeatherScraper(HTMLParser):
         except Exception as e:
             print("<Error>:", e)
 
-    def get_data(self):
-        #Return the data which was scraped.
-        return self.data
-
     def start_scraping(self, url: str, year: int) -> None:
         #Scraping a specific year temperature data.
         try:
@@ -96,7 +92,7 @@ class WeatherScraper(HTMLParser):
                 print('There is no data for year: {0}, month: {1}.'.format(year, month))
                 return {}
 
-            result = new_scraper.get_data().split(',')
+            result = new_scraper.data.split(',')
 
             # Convert raw info to weather list.
             # From the website, each row has 11 column, and the last 4 lines are useless(sum, avg, xtrm, summary).
