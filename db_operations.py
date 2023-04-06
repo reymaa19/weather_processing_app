@@ -60,8 +60,19 @@ class DBOperations:
         except Exception as e:
             print("*** Error creating table:", e)
 
-    def purge_data():
-        print()
+    def purge_data(self):
+        """
+        Deletes all the data inside the database.
+        """
+        try:
+            print('Purging all data in the database... ')
+            with DBCM(self.db_name) as cursor:
+                sql_purge_data_1 = """DELETE FROM WeatherData;"""
+                sql_purge_data_2 = """DELETE FROM sqlite_sequence WHERE NAME = 'WeatherData';"""
+                cursor.execute(sql_purge_data_1)
+                cursor.execute(sql_purge_data_2)
+        except Exception as e:
+            self.logger.error(e)
 
 if __name__ == '__main__':
     mydb = DBOperations('weather.sqlite')
@@ -72,4 +83,7 @@ if __name__ == '__main__':
 
     mydb.save_data(my_scraper.weather)
 
+    print(mydb.fetch_data())
+
+    mydb.purge_data()
     print(mydb.fetch_data())
