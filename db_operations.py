@@ -30,14 +30,14 @@ class DBOperations:
         new_weather_data = []
         for sample_date, data in data_source.items():
             new_sample = [sample_date]
-            new_sample.append('Winnipeg, MB')
             for stat, value in data.items():
                 new_sample.append(value)
             new_weather_data.append(tuple(new_sample))
         try:
             with DBCM(self.db_name) as cursor:
-                sql_save_data = """INSERT INTO WeatherData (sample_date, location, max_temp, min_temp, avg_temp) VALUES (?,?,?,?,?);"""
+                sql_save_data = """INSERT OR IGNORE INTO WeatherData (sample_date, max_temp, min_temp, avg_temp) VALUES (?,?,?,?);"""
                 for date_data in new_weather_data:
+                    print(date_data)
                     cursor.execute(sql_save_data, date_data)
         except Exception as e:
             print("*** Error inserting data.", e)
@@ -51,11 +51,11 @@ class DBOperations:
                 SQL_INITIALIZE_DB = """CREATE TABLE IF NOT EXISTS WeatherData 
     (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     sample_date TEXT NOT NULL, 
-    location TEXT NOT NULL,
+    location TEXT NOT NULL default %s,
     min_temp REAL NOT NULL,
     max_temp REAL NOT NULL,
     avg_temp REAL NOT NULL,
-    UNIQUE(sample_date, location));"""
+    UNIQUE(sample_date, location));""" % "'Winnipeg, Manitoba'"
                 cursor.execute(SQL_INITIALIZE_DB)
         except Exception as e:
             print("*** Error creating table:", e)
@@ -87,3 +87,5 @@ if __name__ == '__main__':
 
     mydb.purge_data()
     print(mydb.fetch_data())
+    test = '1'
+    print(test.isnumeric())
