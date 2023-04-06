@@ -24,6 +24,11 @@ class DBOperations:
             return fetch_weather
         except Exception as e:
             print("*** Error fetching data:", e)
+
+
+
+
+
     
     def save_data(self, data_source: dict):
         """
@@ -34,15 +39,21 @@ class DBOperations:
             new_sample = [sample_date] # sample = ['2023-05-05']
             for stat, value in data.items(): # FOR EVERY MEAN, MIN, OR AVERAGE AND ITS VALUE
                 new_sample.append(value) # ADD IT TO THE NEW ROW `['2023-05-05', '1.3', '0.3', '1']`
-            new_weather_data.append(tuple(new_sample)) # ADD NEW SAMPLE TO LIST OF TUPLES `[('2023-05-05', '1.3', '0.3', '1'), (...), (...)]` 
+            new_weather_data.append(tuple(new_sample)) # ADD NEW SAMPLE TO LIST OF TUPLES `[('2023-05-05', '1.3', '0.3', '1'), (...), (...)]`
         try:
             with DBCM(self.db_name) as cursor:
-                sql_save_data = """INSERT OR IGNORE INTO WeatherData (sample_date,max_temp,min_temp,avg_temp) VALUES (?,?,?,
-                ?); """
-                for list_item in new_weather_data:
-                    cursor.execute(sql_save_data, list_item)
+                sql_save_data = """INSERT OR IGNORE INTO WeatherData (sample_date, max_temp, min_temp, avg_temp) VALUES (?,?,?,?);"""
+                # SOMETHING WRONG HERE
+                for date_data in new_weather_data:
+                    cursor.execute(sql_save_data, date_data)
+                # SUPPOSED TO COMMIT AFTER EXITING `with` STATEMENT
+                # !!! LOCATION IS NOT BEING RECORDED !!!
         except Exception as e:
-            print("Error inserting data.", e)
+            print("*** Error inserting data.", e)
+
+
+
+
 
     def initialize_db(self):
         """
@@ -60,8 +71,6 @@ class DBOperations:
                 cursor.execute(SQL_INITIALIZE_DB)
         except Exception as e:
             print("*** Error creating table:", e)
-            # *** sample_date -> text, unique in combination with location ***
-            # *** location -> text, unique in combination with sample_date ***
 
     def purge_data():
         print()
@@ -72,7 +81,6 @@ if __name__ == '__main__':
 
     my_scraper = WeatherScraper()
     my_scraper.scrape_month_weather_temp_data(2023, 3)
-    # print(my_scraper.weather)
-    mydb.save_data(my_scraper.weather) # SAVING NO DATA (something wrong with dbcm.py not committing)
-    print(mydb.fetch_data()) # FETCHING NO DATA
-
+    print(my_scraper.weather)
+    mydb.save_data(my_scraper.weather) # SAVING NO DATA (save_data not executing properly)
+    print(mydb.fetch_data())
