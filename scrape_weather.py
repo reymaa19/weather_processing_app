@@ -74,7 +74,7 @@ class WeatherScraper(HTMLParser):
     def scrape_month_weather_temp_data(self, year: int, month: int) -> dict:
         #Scraping a month temperature data on the website page.
         try:
-            print('Scraping data of year: {0}, month: {1}...'.format(year, month))
+            print('Scraping data for year: {0}, month: {1}...'.format(year, month))
             days_of_current_month = calendar.monthrange(year, month)[1]
             # Get raw info from HTML parse
             url = ("http://climate.weather.gc.ca/climate_data/daily_data_e.html?StationID=27174&timeframe=2&StartYear=1840&EndYear=" + str(year)
@@ -122,9 +122,5 @@ class WeatherScraper(HTMLParser):
 
 if __name__ == '__main__':
     my_scraper = WeatherScraper()
-    my_scraper.scrape_to_earliest_month_weather(2000, 1)
-    my_scraper.start_scraping('url string', 2023)
-    print('debug: my_scraper.weather')
+    my_scraper.scrape_to_earliest_month_weather(2023, 3)
     print(my_scraper.weather)
-    # for key, value in my_scraper.weather.items():
-    #     print(key + ': ' + str(value))

@@ -37,7 +37,6 @@ class DBOperations:
             with DBCM(self.db_name) as cursor:
                 sql_save_data = """INSERT OR IGNORE INTO WeatherData (sample_date, max_temp, min_temp, avg_temp) VALUES (?,?,?,?);"""
                 for date_data in new_weather_data:
-                    print(date_data)
                     cursor.execute(sql_save_data, date_data)
         except Exception as e:
             print("*** Error inserting data.", e)
@@ -72,20 +71,25 @@ class DBOperations:
                 cursor.execute(sql_purge_data_1)
                 cursor.execute(sql_purge_data_2)
         except Exception as e:
-            self.logger.error(e)
+            print("*** Error purging database.", e)
 
+
+            
 if __name__ == '__main__':
+    # Initialize DBOperations object.
     mydb = DBOperations('weather.sqlite')
+    # Initialize database table.
     mydb.initialize_db()
 
+    # Initialize WeatherScraper object.
     my_scraper = WeatherScraper()
+    # Specify to scrape weather from March, 2023.
     my_scraper.scrape_month_weather_temp_data(2023, 3)
 
+    # Save scraped data to database.
     mydb.save_data(my_scraper.weather)
+    print("*** save_data result: ", mydb.fetch_data())
 
-    print(mydb.fetch_data())
-
+    # Delete data from database.
     mydb.purge_data()
-    print(mydb.fetch_data())
-    test = '1'
-    print(test.isnumeric())
+    print("*** purge_data result: ", mydb.fetch_data())
