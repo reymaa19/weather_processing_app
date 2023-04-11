@@ -84,12 +84,12 @@ if __name__ == '__main__':
     # Initialize WeatherScraper object.
     my_scraper = WeatherScraper()
     # Specify to scrape weather from March, 2023.
-    my_scraper.scrape_month_weather_temp_data(2023, 3)
+    my_scraper.scrape_to_earliest_month_weather(1997)
 
     # Save scraped data to database.
     mydb.save_data(my_scraper.weather)
     print("*** save_data result: ", mydb.fetch_data())
 
     # Delete data from database.
-    mydb.purge_data()
-    print("*** purge_data result: ", mydb.fetch_data())
+    # mydb.purge_data()
+    # print("*** purge_data result: ", mydb.fetch_data())
