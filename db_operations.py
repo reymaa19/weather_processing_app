@@ -31,7 +31,11 @@ class DBOperations:
         for sample_date, data in data_source.items():
             new_sample = [sample_date]
             for stat, value in data.items():
-                new_sample.append(value)
+                try:
+                    float(value)
+                    new_sample.append(value)
+                except:
+                    new_sample.append('')
             new_weather_data.append(tuple(new_sample))
         try:
             with DBCM(self.db_name) as cursor:
@@ -84,7 +88,7 @@ if __name__ == '__main__':
     # Initialize WeatherScraper object.
     my_scraper = WeatherScraper()
     # Specify to scrape weather from March, 2023.
-    my_scraper.scrape_to_earliest_month_weather(1997)
+    my_scraper.scrape_to_earliest_month_weather(2023, 3)
 
     # Save scraped data to database.
     mydb.save_data(my_scraper.weather)
