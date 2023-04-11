@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
 import calendar
+from db_operations import DBOperations
 
 
 class PlotOperations():
@@ -13,21 +14,12 @@ class PlotOperations():
         self.end_year = end_year
         self.weather_data = dict()
         self.month = 0
+        self.my_db = DBOperations('weather.sqlite')
 
     def create_weather_data(self):
         """Read data from the database"""
-        with DBCM('weather.sqlite') as cursor:
-            for month in range(1, 13):
-                monthly_list = []
-                for year in range(self.start_year, self.end_year + 1):
-                    cursor.execute(
-                        "SELECT avg_temp FROM WeatherData WHERE sample_date LIKE ?",
-                        ('%{}-{:02d}%'.format(year, month),))
-                    rows = cursor.fetchall()
-                    monthly_list.extend(float(row[0]) for row in rows if row[0])
-                self.weather_data[month] = monthly_list
-
-
+        self.weather_data = self.my_db.fetch_data(self.start_year, self.end_year, self.weather_data)
+        
     def create_plot(self, data):
         """This method creates a plot with a range of years"""
         fig, ax = plt.subplots()
@@ -63,4 +55,4 @@ if __name__ == '__main__':
     test = PlotOperations(2000, 2023)
     test.create_weather_data()
     test.create_plot(test.weather_data)
-    test.create_day_plot(2013, 5)
+    test.create_day_plot(2020, 3)

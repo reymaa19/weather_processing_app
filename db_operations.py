@@ -12,7 +12,7 @@ class DBOperations:
 
     def fetch_data(self) -> list: 
         """
-        Fetches requested data from the database for plotting.
+        Fetches all data from the database.
         """
         try:
             with DBCM(self.db_name) as cursor:
@@ -21,6 +21,25 @@ class DBOperations:
                 fetch_weather = cursor.fetchall()
             return fetch_weather
         except Exception as e:
+            print("*** Error fetching data:", e)
+
+    def fetch_data_years(self, start_year: int, end_year: int, weather_data: dict) -> dict:
+        """
+        Fetches data for the specified years from the database and returns it as a dict.
+        """
+        try:
+            with DBCM(self.db_name) as cursor:
+                for month in range(1, 13):
+                    monthly_list = []
+                    for year in range(start_year, end_year + 1):
+                        cursor.execute(
+                            "SELECT avg_temp FROM WeatherData WHERE sample_date LIKE ?",
+                            ('%{}-{:02d}%'.format(year, month),))
+                        rows = cursor.fetchall()
+                        monthly_list.extend(float(row[0]) for row in rows if row[0])
+                    weather_data[month] = monthly_list
+                return weather_data
+        except Exception as e:  
             print("*** Error fetching data:", e)
     
     def save_data(self, data_source: dict):
