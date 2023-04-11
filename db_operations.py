@@ -23,11 +23,12 @@ class DBOperations:
         except Exception as e:
             print("*** Error fetching data:", e)
 
-    def fetch_data_years(self, start_year: int, end_year: int, weather_data: dict) -> dict:
+    def fetch_data_years(self, start_year: int, end_year: int) -> dict:
         """
         Fetches data for the specified years from the database and returns it as a dict.
         """
         try:
+            weather_data = dict()
             with DBCM(self.db_name) as cursor:
                 for month in range(1, 13):
                     monthly_list = []
@@ -41,6 +42,22 @@ class DBOperations:
                 return weather_data
         except Exception as e:  
             print("*** Error fetching data:", e)
+    
+    def fetch_data_month(self, year: int, month: int) -> list:
+        """
+        Fetches data for the specified month from the database and returns a list.
+        """
+        monthly_list = []
+        year = str(year)
+        with DBCM(self.db_name) as cursor:
+            cursor.execute(
+                "SELECT avg_temp FROM WeatherData WHERE sample_date LIKE ?",
+                ('%{}%'.format(year + '-' + str(month).zfill(2)),))
+            rows = cursor.fetchall()
+            for row in rows:
+                if '{}'.format(row[0]) != '':
+                    monthly_list.append(float('{}'.format(row[0])))
+        return monthly_list
     
     def save_data(self, data_source: dict):
         """

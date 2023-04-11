@@ -1,5 +1,4 @@
 """This module is to create different plots """
-from dbcm import DBCM
 import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
@@ -18,7 +17,7 @@ class PlotOperations():
 
     def create_weather_data(self):
         """Read data from the database"""
-        self.weather_data = self.my_db.fetch_data_years(self.start_year, self.end_year, self.weather_data)
+        self.weather_data = self.my_db.fetch_data_years(self.start_year, self.end_year)
         
     def create_plot(self, data):
         """This method creates a plot with a range of years"""
@@ -31,17 +30,8 @@ class PlotOperations():
 
 
     def create_day_plot(self, year, month):
-        """This method create a monthly plot"""
-        monthly_list = []
-        year = str(year)
-        with DBCM('weather.sqlite') as cursor:
-            cursor.execute(
-                "SELECT avg_temp FROM WeatherData WHERE sample_date LIKE ?",
-                ('%{}%'.format(year + '-' + str(month).zfill(2)),))
-            rows = cursor.fetchall()
-            for row in rows:
-                if '{}'.format(row[0]) != '':
-                    monthly_list.append(float('{}'.format(row[0])))
+        """This method creates a monthly plot"""
+        monthly_list = self.my_db.fetch_data_month(year, month)
 
         plt.plot(monthly_list)
         plt.xlabel('Day')
