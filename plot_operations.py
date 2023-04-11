@@ -7,7 +7,7 @@ import calendar
 
 
 class PlotOperations():
-    def __init__(self, start_year=1996, end_year=2020):
+    def __init__(self, start_year=1996, end_year=2023):
         """Set up default years"""
         self.start_year = start_year
         self.end_year = end_year
@@ -16,37 +16,27 @@ class PlotOperations():
 
     def create_weather_data(self):
         """Read data from the database"""
-        start_year = self.start_year
-        end_year = self.end_year
-
         with DBCM('weather.sqlite') as cursor:
-            for x in range(1, 13):
+            for month in range(1, 13):
                 monthly_list = []
-                for year in range(start_year, end_year + 1):
-                    self.month = x
-                    year = str(year)
+                for year in range(self.start_year, self.end_year + 1):
                     cursor.execute(
-                        "SELECT avg_temp FROM WeatherData"
-                        " WHERE sample_date LIKE ?",
-                        ('%{}%'.format(year + '-' + str(x).zfill(2)),))
+                        "SELECT avg_temp FROM WeatherData WHERE sample_date LIKE ?",
+                        ('%{}-{:02d}%'.format(year, month),))
                     rows = cursor.fetchall()
-                    for row in rows:
-                        if '{}'.format(row[0]) != '':
-                            monthly_list.append(float('{}'.format(row[0])))
-                    self.weather_data.update({self.month: monthly_list})
+                    monthly_list.extend(float(row[0]) for row in rows if row[0])
+                self.weather_data[month] = monthly_list
+
 
     def create_plot(self, data):
-        """This method create a plot with range of year"""
-        start_year = self.start_year
-        end_year = self.end_year
+        """This method creates a plot with a range of years"""
         fig, ax = plt.subplots()
         ax.boxplot(data.values())
         ax.set_xticklabels(data.keys())
-        plt.xlabel('Month')
-        plt.ylabel('Temperature (Celsius)')
-        plt.title('Monthly Temperature Distribution for : ' +
-                  str(start_year) + ' to ' + str(end_year))
+        ax.set(xlabel='Month', ylabel='Temperature (Celsius)',
+            title=f"Monthly Temperature Distribution for: {self.start_year} to {self.end_year}")
         plt.show()
+
 
     def create_day_plot(self, year, month):
         """This method create a monthly plot"""
@@ -73,4 +63,4 @@ if __name__ == '__main__':
     test = PlotOperations(2000, 2023)
     test.create_weather_data()
     test.create_plot(test.weather_data)
-    # test.create_day_plot(2013, 5)
+    test.create_day_plot(2013, 5)
