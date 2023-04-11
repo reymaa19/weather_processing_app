@@ -18,7 +18,7 @@ class PlotOperations():
 
     def create_weather_data(self):
         """Read data from the database"""
-        self.weather_data = self.my_db.fetch_data(self.start_year, self.end_year, self.weather_data)
+        self.weather_data = self.my_db.fetch_data_years(self.start_year, self.end_year, self.weather_data)
         
     def create_plot(self, data):
         """This method creates a plot with a range of years"""
