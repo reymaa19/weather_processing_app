@@ -43,7 +43,7 @@ class WeatherProcessor:
 
     def update_db(self):
         """Update database to most recent day of year"""
-        data_url_list = self.generate_data_url()
+        data_url_list = self.generate_data_urls()
         weather = {}
         for url in data_url_list:
             print('Scraping data from:', url)
