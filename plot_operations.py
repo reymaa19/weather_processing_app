@@ -45,4 +45,8 @@ if __name__ == '__main__':
     test = PlotOperations(2000, 2023)
     test.create_weather_data()
     test.create_plot(test.weather_data)
-    test.create_day_plot(2020, 3)
+
+    year = input("Enter the year for the day plot: ")
+    month = input("Enter the month for the day plot: ")
+    
+    test.create_day_plot(int(year), int(month))
