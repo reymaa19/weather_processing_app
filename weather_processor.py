@@ -18,8 +18,14 @@ class WeatherProcessor:
 
     def update_db(self):
         """Updates the database to the most recent data."""
-        # *** Need to iterate through months until reaching the latest in database. ***.
-        self.scraper.scrape_month_weather_temp_data(self.today.year, self.today.month)
+        current_month = int(self.today.__str__().split("-")[1])
+        current_year = int(self.today.__str__().split("-")[0])
+        while self.latest_date[:-3] != str(current_year) + "-" + str(current_month).zfill(2):
+            self.scraper.scrape_month_weather_temp_data(current_year, current_month)
+            current_month -= 1
+            if current_month == 0:
+                current_year -= 1
+                current_month = 12
         self.db.save_data(self.scraper.weather)
     
     def download_full_set_data(self):
