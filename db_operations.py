@@ -59,6 +59,14 @@ class DBOperations:
                     monthly_list.append(float('{}'.format(row[0])))
         return monthly_list
     
+    def fetch_data_latest(self) -> list:
+        """Get the latest date in the database."""
+        with DBCM(self.db_name) as cursor:
+            cursor.execute(
+                """SELECT * FROM WeatherData ORDER BY sample_date DESC LIMIT 1""")
+            row = cursor.fetchall()
+        return [row[0][1].split("-"), row[0][1]]
+    
     def save_data(self, data_source: dict):
         """
         Saves new data to the database.
@@ -124,7 +132,7 @@ if __name__ == '__main__':
     # Initialize WeatherScraper object.
     my_scraper = WeatherScraper()
     # Specify to scrape weather from March, 2023.
-    my_scraper.scrape_to_earliest_month_weather(2023, 3)
+    my_scraper.scrape_to_earliest_month_weather()
 
     # Save scraped data to database.
     mydb.save_data(my_scraper.weather)
