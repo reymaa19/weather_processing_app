@@ -1,6 +1,7 @@
 """This module contains operations for the database."""
 from dbcm import DBCM
 from scrape_weather import WeatherScraper
+import logging
 
 class DBOperations:
     """
@@ -9,8 +10,9 @@ class DBOperations:
     def __init__(self, path: str):
         """Initializes the database path name."""
         self.db_name = path
+        self.logger = logging.getLogger()
 
-    def fetch_data(self) -> list: 
+    def fetch_data(self) -> list:
         """
         Fetches all data from the database.
         """
@@ -20,15 +22,16 @@ class DBOperations:
                 cursor.execute(sql_select_all)
                 fetch_weather = cursor.fetchall()
             return fetch_weather
-        except Exception as e:
-            print("*** Error fetching data:", e)
+        except Exception as exception:
+            self.logger.error(exception)
+            print("*** Error fetching data:", exception)
 
     def fetch_data_years(self, start_year: int, end_year: int) -> dict:
         """
         Fetches data for the specified years from the database and returns it as a dict.
         """
         try:
-            weather_data = dict()
+            weather_data = {}
             with DBCM(self.db_name) as cursor:
                 for month in range(1, 13):
                     monthly_list = []
@@ -40,9 +43,10 @@ class DBOperations:
                         monthly_list.extend(float(row[0]) for row in rows if row[0])
                     weather_data[month] = monthly_list
                 return weather_data
-        except Exception as e:  
-            print("*** Error fetching data:", e)
-    
+        except Exception as exception:
+            self.logger.error(exception)
+            print("*** Error fetching data:", exception)
+
     def fetch_data_month(self, year: int, month: int) -> list:
         """
         Fetches data for the specified month from the database and returns a list.
@@ -58,7 +62,7 @@ class DBOperations:
                 if '{}'.format(row[0]) != '':
                     monthly_list.append(float('{}'.format(row[0])))
         return monthly_list
-    
+
     def fetch_data_latest(self) -> str:
         """Get the latest date in the database."""
         with DBCM(self.db_name) as cursor:
@@ -66,7 +70,7 @@ class DBOperations:
                 """SELECT * FROM WeatherData ORDER BY sample_date DESC LIMIT 1""")
             row = cursor.fetchall()
         return row[0][1]
-    
+
     def save_data(self, data_source: dict):
         """
         Saves new data to the database.
@@ -83,19 +87,21 @@ class DBOperations:
             new_weather_data.append(tuple(new_sample))
         try:
             with DBCM(self.db_name) as cursor:
-                sql_save_data = """INSERT OR IGNORE INTO WeatherData (sample_date, max_temp, min_temp, avg_temp) VALUES (?,?,?,?);"""
+                sql_save_data = """INSERT OR IGNORE INTO WeatherData
+                (sample_date, max_temp, min_temp, avg_temp) VALUES (?,?,?,?);"""
                 for date_data in new_weather_data:
                     cursor.execute(sql_save_data, date_data)
-        except Exception as e:
-            print("*** Error inserting data.", e)
+        except Exception as exception:
+            self.logger.error(exception)
+            print("*** Error inserting data.", exception)
 
     def initialize_db(self):
         """
         Creates a table if one does not exists.
         """
-        try: 
+        try:
             with DBCM(self.db_name) as cursor:
-                SQL_INITIALIZE_DB = """CREATE TABLE IF NOT EXISTS WeatherData 
+                SQL_INITIALIZE_DB = """CREATE TABLE IF NOT EXISTS WeatherData
     (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
     sample_date TEXT NOT NULL, 
     location TEXT NOT NULL default %s,
@@ -104,8 +110,9 @@ class DBOperations:
     avg_temp REAL NOT NULL,
     UNIQUE(sample_date, location));""" % "'Winnipeg, Manitoba'"
                 cursor.execute(SQL_INITIALIZE_DB)
-        except Exception as e:
-            print("*** Error creating table:", e)
+        except Exception as exception:
+            self.logger.error(exception)
+            print("*** Error creating table:", exception)
 
     def purge_data(self):
         """
@@ -118,11 +125,10 @@ class DBOperations:
                 sql_purge_data_2 = """DELETE FROM sqlite_sequence WHERE NAME = 'WeatherData';"""
                 cursor.execute(sql_purge_data_1)
                 cursor.execute(sql_purge_data_2)
-        except Exception as e:
-            print("*** Error purging database.", e)
+        except Exception as exception:
+            self.logger.error(exception)
+            print("*** Error purging database.", exception)
 
-
-            
 if __name__ == '__main__':
     # Initialize DBOperations object.
     mydb = DBOperations('weather.sqlite')
@@ -137,7 +143,3 @@ if __name__ == '__main__':
     # Save scraped data to database.
     mydb.save_data(my_scraper.weather)
     print("*** save_data result: ", mydb.fetch_data())
-
-    # Delete data from database.
-    # mydb.purge_data()
-    # print("*** purge_data result: ", mydb.fetch_data())
