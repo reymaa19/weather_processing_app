@@ -1,5 +1,5 @@
-('E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module 10 '
- '- Class Project\\weather_processing_app\\build\\weather_gui\\weather_gui.pkg',
+('M:\\School\\TERM 5\\Adev-3005 Programming in Python\\final '
+ 'project\\weather_processing_app\\build\\weather_gui\\weather_gui.pkg',
  {'BINARY': True,
   'DATA': True,
   'EXECUTABLE': True,
@@ -9,58 +9,53 @@
   'PYZ': False,
   'SPLASH': True},
  [('PYZ-00.pyz',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class Project\\weather_processing_app\\build\\weather_gui\\PYZ-00.pyz',
+   'M:\\School\\TERM 5\\Adev-3005 Programming in Python\\final '
+   'project\\weather_processing_app\\build\\weather_gui\\PYZ-00.pyz',
    'PYZ'),
   ('struct',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class '
-   'Project\\weather_processing_app\\build\\weather_gui\\localpycs\\struct.pyc',
+   'M:\\School\\TERM 5\\Adev-3005 Programming in Python\\final '
+   'project\\weather_processing_app\\build\\weather_gui\\localpycs\\struct.pyc',
    'PYMODULE'),
   ('pyimod01_archive',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class '
-   'Project\\weather_processing_app\\build\\weather_gui\\localpycs\\pyimod01_archive.pyc',
+   'M:\\School\\TERM 5\\Adev-3005 Programming in Python\\final '
+   'project\\weather_processing_app\\build\\weather_gui\\localpycs\\pyimod01_archive.pyc',
    'PYMODULE'),
   ('pyimod02_importers',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class '
-   'Project\\weather_processing_app\\build\\weather_gui\\localpycs\\pyimod02_importers.pyc',
+   'M:\\School\\TERM 5\\Adev-3005 Programming in Python\\final '
+   'project\\weather_processing_app\\build\\weather_gui\\localpycs\\pyimod02_importers.pyc',
    'PYMODULE'),
   ('pyimod03_ctypes',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class '
-   'Project\\weather_processing_app\\build\\weather_gui\\localpycs\\pyimod03_ctypes.pyc',
+   'M:\\School\\TERM 5\\Adev-3005 Programming in Python\\final '
+   'project\\weather_processing_app\\build\\weather_gui\\localpycs\\pyimod03_ctypes.pyc',
    'PYMODULE'),
   ('pyimod04_pywin32',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class '
-   'Project\\weather_processing_app\\build\\weather_gui\\localpycs\\pyimod04_pywin32.pyc',
+   'M:\\School\\TERM 5\\Adev-3005 Programming in Python\\final '
+   'project\\weather_processing_app\\build\\weather_gui\\localpycs\\pyimod04_pywin32.pyc',
    'PYMODULE'),
   ('pyiboot01_bootstrap',
-   'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
+   'C:\\Users\\arjay\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
    'PYSOURCE'),
   ('pyi_rth_inspect',
-   'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
+   'C:\\Users\\arjay\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
    'PYSOURCE'),
   ('pyi_rth_pkgutil',
-   'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgutil.py',
+   'C:\\Users\\arjay\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgutil.py',
    'PYSOURCE'),
   ('pyi_rth_multiprocessing',
-   'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_multiprocessing.py',
+   'C:\\Users\\arjay\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_multiprocessing.py',
    'PYSOURCE'),
   ('pyi_rth_pkgres',
-   'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgres.py',
+   'C:\\Users\\arjay\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgres.py',
    'PYSOURCE'),
   ('pyi_rth__tkinter',
-   'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth__tkinter.py',
+   'C:\\Users\\arjay\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth__tkinter.py',
    'PYSOURCE'),
   ('pyi_rth_mplconfig',
-   'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_mplconfig.py',
+   'C:\\Users\\arjay\\AppData\\Local\\Programs\\Python\\Python310\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_mplconfig.py',
    'PYSOURCE'),
   ('weather_gui',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class Project\\weather_processing_app\\weather_gui.py',
+   'M:\\School\\TERM 5\\Adev-3005 Programming in Python\\final '
+   'project\\weather_processing_app\\weather_gui.py',
    'PYSOURCE')],
  True,
  False,
