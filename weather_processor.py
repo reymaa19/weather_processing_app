@@ -11,7 +11,10 @@ class WeatherProcessor:
         self.db = DBOperations('weather.sqlite')
         self.scraper = WeatherScraper()
         try:
-            self.latest_date = self.db.fetch_data_latest()
+            if (self.db.fetch_data_latest() == ""):
+                self.latest_date = "1996-10-31"
+            else:
+                self.latest_date = self.db.fetch_data_latest()
         except:
             self.latest_date = ""
         self.today = datetime.now().date()
