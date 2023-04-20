@@ -1,7 +1,6 @@
 """This module contains web scraping operations to the database."""
 import calendar
 import urllib.request
-import logging
 
 from html.parser import HTMLParser
 from datetime import date, datetime
@@ -15,7 +14,6 @@ class WeatherScraper(HTMLParser):
         self.reading_temp_flag = False
         self.date_list = []
         self.stop_scraping = False
-        self.logger = logging.getLogger()
 
     def handle_starttag(self, tag, attrs):
         """Condition for starting tag scarping."""
@@ -31,7 +29,7 @@ class WeatherScraper(HTMLParser):
             if tag == 'td':
                 self.reading_temp_flag = True
         except Exception as error:
-            self.logger.error(error)
+            print("*** Error:", error)
 
     def handle_data(self, data: str):
         """Condition for scraping the useful data."""
@@ -40,7 +38,7 @@ class WeatherScraper(HTMLParser):
                 if data not in ['LegendM', 'LegendE', ' ', 'LegendT', 'LegendCarer', 'E']:
                     self.data += data.strip() + ','
         except Exception as error:
-            self.logger.error(error)
+            print("*** Error:", error)
 
     def handle_endtag(self, tag):
         """Condition for ending tag scarping."""
@@ -48,7 +46,7 @@ class WeatherScraper(HTMLParser):
             if tag == 'td':
                 self.reading_temp_flag = False
         except Exception as error:
-            self.logger.error(error)
+            print("*** Error:", error)
 
     def start_scraping(self, url: str, year: int) -> None:
         """Scraping a specific year temperature data."""
@@ -57,7 +55,7 @@ class WeatherScraper(HTMLParser):
             for i in range(1, 13):
                 self.scrape_month_weather_temp_data(year, i)
         except Exception as error:
-            self.logger.error(error)
+            print("*** Error:", error)
 
     def scrape_to_earliest_month_weather(self, year: int = datetime.today().year,
                                              month: int = datetime.today().month) -> None:
@@ -70,7 +68,7 @@ class WeatherScraper(HTMLParser):
                     year -= 1
                     month = 12
         except Exception as error:
-            self.logger.error(error)
+            print("*** Error:", error)
 
     def scrape_month_weather_temp_data(self, year: int, month: int) -> dict:
         """Scraping a month temperature data on the website page."""
@@ -113,7 +111,7 @@ class WeatherScraper(HTMLParser):
             self.weather.update(month_dict)
             return month_dict
         except Exception as error:
-            self.logger.error(error)
+            print("*** Error:", error)
 
 if __name__ == '__main__':
     my_scraper = WeatherScraper()
