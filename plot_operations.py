@@ -1,7 +1,5 @@
 """This module is to create different plots """
 import matplotlib.pyplot as plt
-import numpy as np
-from datetime import datetime
 import calendar
 from db_operations import DBOperations
 

@@ -10,7 +10,10 @@ class WeatherProcessor:
     def __init__(self):
         self.db = DBOperations('weather.sqlite')
         self.scraper = WeatherScraper()
-        self.latest_date = self.db.fetch_data_latest()
+        try:
+            self.latest_date = self.db.fetch_data_latest()
+        except:
+            self.latest_date = ""
         self.today = datetime.now().date()
 
     def update_db(self):
