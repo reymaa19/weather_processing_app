@@ -1,7 +1,6 @@
 """This module contains operations for the database."""
 from dbcm import DBCM
 from scrape_weather import WeatherScraper
-import logging
 
 class DBOperations:
     """
@@ -10,7 +9,6 @@ class DBOperations:
     def __init__(self, path: str):
         """Initializes the database path name."""
         self.db_name = path
-        self.logger = logging.getLogger()
 
     def fetch_data(self) -> list:
         """
@@ -23,7 +21,6 @@ class DBOperations:
                 fetch_weather = cursor.fetchall()
             return fetch_weather
         except Exception as exception:
-            self.logger.error(exception)
             print("*** Error fetching data:", exception)
 
     def fetch_data_years(self, start_year: int, end_year: int) -> dict:
@@ -44,7 +41,6 @@ class DBOperations:
                     weather_data[month] = monthly_list
                 return weather_data
         except Exception as exception:
-            self.logger.error(exception)
             print("*** Error fetching data:", exception)
 
     def fetch_data_month(self, year: int, month: int) -> list:
@@ -92,7 +88,6 @@ class DBOperations:
                 for date_data in new_weather_data:
                     cursor.execute(sql_save_data, date_data)
         except Exception as exception:
-            self.logger.error(exception)
             print("*** Error inserting data.", exception)
 
     def initialize_db(self):
@@ -111,7 +106,6 @@ class DBOperations:
     UNIQUE(sample_date, location));""" % "'Winnipeg, Manitoba'"
                 cursor.execute(SQL_INITIALIZE_DB)
         except Exception as exception:
-            self.logger.error(exception)
             print("*** Error creating table:", exception)
 
     def purge_data(self):
@@ -126,7 +120,6 @@ class DBOperations:
                 cursor.execute(sql_purge_data_1)
                 cursor.execute(sql_purge_data_2)
         except Exception as exception:
-            self.logger.error(exception)
             print("*** Error purging database.", exception)
 
 if __name__ == '__main__':
