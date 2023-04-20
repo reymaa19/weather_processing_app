@@ -26,11 +26,13 @@ class WeatherProcessor:
             if current_month == 0:
                 current_year -= 1
                 current_month = 12
+        self.db.initialize_db()
         self.db.save_data(self.scraper.weather)
     
     def download_full_set_data(self):
         """Downloads the full set of weather data."""
         self.scraper.scrape_to_earliest_month_weather()
+        self.db.initialize_db()
         self.db.save_data(self.scraper.weather)
 
     def db_selection(self):

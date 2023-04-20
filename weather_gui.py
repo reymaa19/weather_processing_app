@@ -2,9 +2,8 @@
 import wx
 import wx.xrc
 
-from db_operations import DBOperations
-from plot_operations import PlotOperations
 from weather_processor import WeatherProcessor
+from plot_operations import PlotOperations
 
 class MyFrame1 (wx.Frame):
     """This class is to build the form"""
@@ -96,33 +95,28 @@ class MyFrame1 (wx.Frame):
 
     # Virtual event handlers, overide them in your derived class
     def full_data(self, event):
-        """This event will download the fullset of data"""
-        full_set = DBOperations()
-        full_set.create_database()
+        """This event will download the full set of data"""
+        processor = WeatherProcessor()
+        processor.download_full_set_data()
 
     def update_data(self, event):
         """This event will update the database"""
-        test = WeatherProcessor()
-        print('Most recent date in database is', test.newest_date)
-        print("Updating Database to today's date")
-        test.update_db()
-        print("Updating Database successed")
+        processor = WeatherProcessor()
+        processor.update_db()
 
     def create_plot(self, event):
         """This method create a plot with range of year"""
-        start_year = eval(self.m_textCtrl2.GetValue())
-        end_year = eval(self.m_textCtrl1.GetValue())
-        plot = PlotOperations().create_plot(start_year, end_year)
+        from_year, to_year = eval(self.m_textCtrl2.GetValue()), eval(self.m_textCtrl1.GetValue())
+        plot = PlotOperations(from_year, to_year)
         plot.create_weather_data()
         plot.create_plot(plot.weather_data)
 
     def monthly_plot(self, event):
         """This method create a monthly plot"""
-        year = eval(self.m_textCtrl3.GetValue())
-        month = eval(self.m_textCtrl4.GetValue())
-        plot = PlotOperations()
-        plot.create_day_plot(year, month)
-
+        year, month = eval(self.m_textCtrl3.GetValue()), eval(self.m_textCtrl4.GetValue())
+        plot = PlotOperations(int(year), int(year) + 1)
+        plot.create_weather_data()
+        plot.create_day_plot(int(year), int(month))
 
 def main():
     app = wx.App()
