@@ -2,7 +2,6 @@ import calendar
 import matplotlib.pyplot as plt
 from db_operations import DBOperations
 
-
 class PlotOperations:
     def __init__(self, start_year=1996, end_year=2023):
         """Set up default years."""
