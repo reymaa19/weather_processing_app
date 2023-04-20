@@ -69,10 +69,14 @@
  False,
  False,
 <<<<<<< HEAD
+<<<<<<< HEAD
  1682027003,
 =======
  1682029031,
 >>>>>>> 089ef7ce534c94a5d29e34406cbd6ee00f388bcb
+=======
+ 1682030730,
+>>>>>>> 7fc2b8b6a56ac40edcbbe9885c86bc7aeadbe1f6
  [('run.exe',
    'C:\\Users\\arjay\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
    'EXECUTABLE')])

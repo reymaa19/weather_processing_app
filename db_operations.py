@@ -7,7 +7,9 @@ class DBOperations:
     The DBOperations class represents the operations of the database.
     """
     def __init__(self, path: str):
-        """Initializes the database path name."""
+        """
+        Initializes the database path name.
+        """
         self.db_name = path
 
     def fetch_data(self) -> list:

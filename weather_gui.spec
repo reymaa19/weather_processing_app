@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ['weather_gui.py'],
+    ['E:\TERM 6 WI 2023 BIT\ADEV-3005 (234116) Programming in Python\Module 10 - Class Project\weather_processing_app'],
     pathex=[],
     binaries=[],
     datas=[],
