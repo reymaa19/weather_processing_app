@@ -4,13 +4,6 @@ import wx.xrc
 
 from weather_processor import WeatherProcessor
 from plot_operations import PlotOperations
-import logging
-
-logging.basicConfig(level=logging.INFO,
-                    format='%(asctime)s  %(message)s',
-                    datefmt='%a, %d %b %Y %H:%M:%S +0000',
-                    filename='error_logs.log',
-                    filemode='a')
 
 class MyFrame1 (wx.Frame):
     """This class is to build the form"""
