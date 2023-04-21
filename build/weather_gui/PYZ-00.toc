@@ -1,5 +1,5 @@
-('E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module 10 '
- '- Class Project\\weather_processing_app\\build\\weather_gui\\PYZ-00.pyz',
+('C:\\Users\\PC\\Documents\\My '
+ 'Stuff\\weather_processing_app\\build\\weather_gui\\PYZ-00.pyz',
  [('PIL',
    'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\__init__.py',
    'PYMODULE'),
@@ -484,12 +484,11 @@
    'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\zoneinfo\\__init__.py',
    'PYMODULE'),
   ('db_operations',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class Project\\weather_processing_app\\db_operations.py',
+   'C:\\Users\\PC\\Documents\\My '
+   'Stuff\\weather_processing_app\\db_operations.py',
    'PYMODULE'),
   ('dbcm',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class Project\\weather_processing_app\\dbcm.py',
+   'C:\\Users\\PC\\Documents\\My Stuff\\weather_processing_app\\dbcm.py',
    'PYMODULE'),
   ('decimal',
    'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\decimal.py',
@@ -1566,8 +1565,8 @@
    'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\plistlib.py',
    'PYMODULE'),
   ('plot_operations',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class Project\\weather_processing_app\\plot_operations.py',
+   'C:\\Users\\PC\\Documents\\My '
+   'Stuff\\weather_processing_app\\plot_operations.py',
    'PYMODULE'),
   ('pprint',
    'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pprint.py',
@@ -1630,8 +1629,8 @@
    'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\runpy.py',
    'PYMODULE'),
   ('scrape_weather',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class Project\\weather_processing_app\\scrape_weather.py',
+   'C:\\Users\\PC\\Documents\\My '
+   'Stuff\\weather_processing_app\\scrape_weather.py',
    'PYMODULE'),
   ('secrets',
    'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\secrets.py',
@@ -1772,8 +1771,8 @@
    'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\uuid.py',
    'PYMODULE'),
   ('weather_processor',
-   'E:\\TERM 6 WI 2023 BIT\\ADEV-3005 (234116) Programming in Python\\Module '
-   '10 - Class Project\\weather_processing_app\\weather_processor.py',
+   'C:\\Users\\PC\\Documents\\My '
+   'Stuff\\weather_processing_app\\weather_processor.py',
    'PYMODULE'),
   ('webbrowser',
    'C:\\Users\\PC\\AppData\\Local\\Programs\\Python\\Python310\\lib\\webbrowser.py',

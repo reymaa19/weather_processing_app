@@ -1,5 +1,7 @@
 import calendar
+import matplotlib
 import matplotlib.pyplot as plt
+matplotlib.use('TkAgg')
 from db_operations import DBOperations
 
 

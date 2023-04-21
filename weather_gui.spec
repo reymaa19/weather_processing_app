@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ['E:\TERM 6 WI 2023 BIT\ADEV-3005 (234116) Programming in Python\Module 10 - Class Project\weather_processing_app'],
+    ['weather_gui.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -24,27 +24,21 @@ pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 exe = EXE(
     pyz,
     a.scripts,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
     [],
-    exclude_binaries=True,
     name='weather_gui',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
     upx=True,
+    upx_exclude=[],
+    runtime_tmpdir=None,
     console=True,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-)
-coll = COLLECT(
-    exe,
-    a.binaries,
-    a.zipfiles,
-    a.datas,
-    strip=False,
-    upx=True,
-    upx_exclude=[],
-    name='weather_gui',
 )
